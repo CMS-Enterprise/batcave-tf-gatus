@@ -59,3 +59,7 @@ variable "ingress_cidrs" {
 variable "config_bucket_name" {
   type = string
 }
+
+variable "cluster_name" {
+  default = "batcave"
+}

@@ -52,6 +52,8 @@ module "gatus" {
 
   container_port = 8080
 
+  cluster_name = var.cluster_name
+
   iam_role_path                 = var.iam_role_path
   iam_role_permissions_boundary = var.iam_role_permissions_boundary
 
