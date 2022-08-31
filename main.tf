@@ -5,8 +5,8 @@ module "gatus" {
   task_policy_json = data.aws_iam_policy_document.fargate.json
   container_definitions = [
     {
-      name         = "gatus"                       # Arbitrary name for the container
-      image        = "twinproduction/gatus:latest" # The image name:tag on dockerhub
+      name         = "gatus" # Arbitrary name for the container
+      image        = var.repository_gatus
       portMappings = [{ containerPort = 8080 }]
       dependsOn = [{
         condition     = "HEALTHY"
@@ -15,7 +15,7 @@ module "gatus" {
     },
     {
       name  = "s3sync"
-      image = "amazon/aws-cli"
+      image = var.repository_awscli
       entrypoint = ["bash", "-cx", <<-EOT
          while true; do
            aws s3 sync "$SOURCE_LOCATION" "$DEST_LOCATION";
@@ -51,6 +51,8 @@ module "gatus" {
   ]
 
   container_port = 8080
+
+  cluster_name = var.cluster_name
 
   iam_role_path                 = var.iam_role_path
   iam_role_permissions_boundary = var.iam_role_permissions_boundary

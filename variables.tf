@@ -32,6 +32,14 @@ variable "service_fqdn" {
   default = ""
 }
 
+variable "repository_gatus" {
+  default = "twinproduction/gatus:latest"
+}
+
+variable "repository_awscli" {
+  default = "artifactory.cloud.cms.gov/gold-image-docker-local/awscli:latest"
+}
+
 variable "acm_cert_base_domain" {
   description = "Base domain of the certificate used for the ALB Proxy"
   default     = ""
@@ -50,4 +58,8 @@ variable "ingress_cidrs" {
 
 variable "config_bucket_name" {
   type = string
+}
+
+variable "cluster_name" {
+  default = "batcave"
 }
