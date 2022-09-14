@@ -37,15 +37,17 @@ module "gatus" {
       ]
     }
   ]
-  nonpersistent_volume_configs = [
+  efs_configs = [
     {
       container_name = "gatus"
-      volume_name    = "config"
+      file_system_id = aws_efs_file_system.efs.id
+      root_directory = "/"
       container_path = "/config"
     },
     {
       container_name = "s3sync"
-      volume_name    = "config"
+      file_system_id = aws_efs_file_system.efs.id
+      root_directory = "/"
       container_path = "/config"
     },
   ]
@@ -158,4 +160,14 @@ data "aws_acm_certificate" "acm_certificate" {
 data "aws_route53_zone" "cms_zone" {
   name         = var.hosted_zone_dns
   private_zone = true
+}
+
+# Allow Fargate task into EFS
+resource "aws_security_group_rule" "allow_fargate_into_efs" {
+  type                     = "ingress"
+  from_port                = 2049
+  to_port                  = 2049
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.efs.id
+  source_security_group_id = module.gatus.security_group_id
 }
