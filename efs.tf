@@ -3,8 +3,15 @@ resource "aws_security_group" "efs" {
   vpc_id      = var.vpc_id
 }
 
+data "aws_kms_key" "efs" {
+  key_id = var.kms_key_id
+}
+
 resource "aws_efs_file_system" "efs" {
   creation_token = var.service_name
+
+  encrypted  = true
+  kms_key_id = data.aws_kms_key.efs.arn
 
   tags = {
     Name = "${var.service_name}"
