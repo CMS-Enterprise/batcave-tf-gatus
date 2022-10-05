@@ -63,3 +63,8 @@ variable "config_bucket_name" {
 variable "cluster_name" {
   default = "batcave"
 }
+
+variable "kms_key_id" {
+  default     = "alias/aws/elasticfilesystem"
+  description = "For encrypting the EFS drive; defaults to the aws managed efs key"
+}
