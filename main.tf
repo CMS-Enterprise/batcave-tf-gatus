@@ -1,6 +1,16 @@
+terraform {
+  required_version = ">= 1.0"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 3.0"
+    }
+  }
+}
+
 module "gatus" {
   source           = "USSBA/easy-fargate-service/aws"
-  version          = "~> 9.1"
+  version          = "~> 9.2"
   family           = var.service_name
   task_policy_json = data.aws_iam_policy_document.fargate.json
   container_definitions = [
@@ -64,7 +74,8 @@ module "gatus" {
   public_subnet_ids  = var.public_subnet_ids
   certificate_arns   = concat(var.certificate_arns, try([data.aws_acm_certificate.acm_certificate[0].arn], []))
 
-  alb_security_group_ids = [aws_security_group.alb_sg.id]
+  alb_security_group_ids         = [aws_security_group.alb_sg.id]
+  alb_drop_invalid_header_fields = true
 }
 
 resource "aws_route53_record" "dns" {

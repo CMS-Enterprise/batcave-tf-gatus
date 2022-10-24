@@ -14,7 +14,7 @@ resource "aws_efs_file_system" "efs" {
   kms_key_id = data.aws_kms_key.efs.arn
 
   tags = {
-    Name = "${var.service_name}"
+    Name = var.service_name
   }
 }
 

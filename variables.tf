@@ -33,10 +33,12 @@ variable "service_fqdn" {
 }
 
 variable "repository_gatus" {
+  type    = string
   default = "twinproduction/gatus:latest"
 }
 
 variable "repository_awscli" {
+  type    = string
   default = "artifactory.cloud.cms.gov/gold-image-docker-local/awscli:latest"
 }
 
@@ -62,9 +64,11 @@ variable "config_bucket_name" {
 
 variable "cluster_name" {
   default = "batcave"
+  type    = string
 }
 
 variable "kms_key_id" {
   default     = "alias/aws/elasticfilesystem"
   description = "For encrypting the EFS drive; defaults to the aws managed efs key"
+  type        = string
 }
