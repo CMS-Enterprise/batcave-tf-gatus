@@ -72,3 +72,9 @@ variable "kms_key_id" {
   description = "For encrypting the EFS drive; defaults to the aws managed efs key"
   type        = string
 }
+
+variable "nat_gateway_public_ip_cidrs" {
+  type        = list(any)
+  default     = []
+  description = "For allowing the nat gateway public ips to reach Gatus"
+}
