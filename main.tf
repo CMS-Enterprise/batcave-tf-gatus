@@ -141,15 +141,6 @@ resource "aws_security_group_rule" "ingress_prefix_list" {
   prefix_list_ids   = var.ingress_prefix_lists
   security_group_id = aws_security_group.alb_sg.id
 }
-resource "aws_security_group_rule" "ingress_gateway_nat" {
-  count             = length(var.nat_gateway_public_ip_cidrs) > 0 ? 1 : 0
-  type              = "ingress"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
-  cidr_blocks       = var.nat_gateway_public_ip_cidrs
-  security_group_id = aws_security_group.alb_sg.id
-}
 
 data "aws_iam_policy_document" "fargate" {
   statement {
