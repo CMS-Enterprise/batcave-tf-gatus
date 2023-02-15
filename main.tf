@@ -148,7 +148,7 @@ resource "aws_security_group_rule" "ingress_gateway_nat" {
   to_port           = 443
   protocol          = "tcp"
   cidr_blocks       = var.nat_gateway_public_ip_cidrs
-  security_group_id = data.aws_security_group.default_USSBA_fargate_security_group.id
+  security_group_id = aws_security_group.alb_sg.id
 }
 
 data "aws_iam_policy_document" "fargate" {
@@ -190,8 +190,4 @@ resource "aws_security_group_rule" "allow_fargate_into_efs" {
   protocol                 = "tcp"
   security_group_id        = aws_security_group.efs.id
   source_security_group_id = module.gatus.security_group_id
-}
-
-data "aws_security_group" "default_USSBA_fargate_security_group" {
-  name = "${var.service_name}-alb"
 }
