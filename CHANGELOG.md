@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2023-03-17
+### Breaking
+- Now will create the ECS cluster for you unless disabled with `create_ecs_cluster = false`
+
 ## [4.0.0] - 2022-02-15
 ### Breaking
 - Removing the unneeded var nat_gateway_public_ip_cidrs
