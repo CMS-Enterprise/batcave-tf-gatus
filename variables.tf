@@ -72,3 +72,9 @@ variable "kms_key_id" {
   description = "For encrypting the EFS drive; defaults to the aws managed efs key"
   type        = string
 }
+
+variable "create_ecs_cluster" {
+  default     = true
+  type        = bool
+  description = "Toggles either creating the ECS Cluster or looking up an existing one"
+}

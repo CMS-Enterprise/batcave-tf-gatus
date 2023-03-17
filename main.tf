@@ -64,7 +64,7 @@ module "gatus" {
 
   container_port = 8080
 
-  cluster_name = var.cluster_name
+  cluster_name = var.create_ecs_cluster ? aws_ecs_cluster.cluster[0].name : data.aws_ecs_cluster.cluster[0].cluster_name
 
   iam_role_path                 = var.iam_role_path
   iam_role_permissions_boundary = var.iam_role_permissions_boundary
@@ -181,4 +181,20 @@ resource "aws_security_group_rule" "allow_fargate_into_efs" {
   protocol                 = "tcp"
   security_group_id        = aws_security_group.efs.id
   source_security_group_id = module.gatus.security_group_id
+}
+
+# Create or fetch the ECS cluster
+resource "aws_ecs_cluster" "cluster" {
+  count = var.create_ecs_cluster ? 1 : 0
+  name  = var.cluster_name
+
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
+}
+
+data "aws_ecs_cluster" "cluster" {
+  count        = var.create_ecs_cluster ? 0 : 1
+  cluster_name = var.cluster_name
 }
