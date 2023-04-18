@@ -63,7 +63,7 @@ variable "config_bucket_name" {
 }
 
 variable "cluster_name" {
-  default = "batcave"
+  default = "hemanth"
   type    = string
 }
 
