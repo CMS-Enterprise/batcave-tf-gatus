@@ -10,7 +10,7 @@ terraform {
 
 module "gatus" {
   source           = "USSBA/easy-fargate-service/aws"
-  version          = "~> 9.2"
+  version          = "~> 10.0.0"
   family           = var.service_name
   task_policy_json = data.aws_iam_policy_document.fargate.json
   container_definitions = [
