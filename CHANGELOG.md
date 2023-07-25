@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [6.0.0] - 2023-07-24
-Updates all the TF AWS providers to 5.8.0 and points at 6.0.0 of gatus (with Fargate 10.0.0)
+Updates all the TF AWS providers to 5.8.0 of gatus (with Fargate 10.0.0)
 
 ## [5.0.0] - 2023-03-17
 ### Breaking
