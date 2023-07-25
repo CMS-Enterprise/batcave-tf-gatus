@@ -11,13 +11,13 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0  |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_gatus"></a> [gatus](#module\_gatus) | USSBA/easy-fargate-service/aws | ~> 9.1 |
+| <a name="module_gatus"></a> [gatus](#module\_gatus) | USSBA/easy-fargate-service/aws | ~> 10.0.0 |
 
 ## Resources
 
