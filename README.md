@@ -17,7 +17,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_gatus"></a> [gatus](#module\_gatus) | USSBA/easy-fargate-service/aws | ~> 9.1 |
+| <a name="module_gatus"></a> [gatus](#module\_gatus) | USSBA/easy-fargate-service/aws | ~> 10.0.0 |
 
 ## Resources
 
